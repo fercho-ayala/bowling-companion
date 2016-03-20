@@ -47,7 +47,8 @@ public final class Score {
                     case 2:
                         frameValue += 5;
                         break;
-                    default: //do nothing
+                    default:
+                        // do nothing
                 }
             }
         }
@@ -78,7 +79,8 @@ public final class Score {
                     case 2:
                         frameValue += 5;
                         break;
-                    default: //do nothing
+                    default:
+                        // do nothing
                 }
             }
         }
@@ -113,7 +115,8 @@ public final class Score {
                     case 2:
                         ballValue += 5;
                         break;
-                    default: //do nothing
+                    default:
+                        // do nothing
                 }
             }
         }
@@ -217,7 +220,8 @@ public final class Score {
                     case 2:
                         ballValue += 5;
                         break;
-                    default: //do nothing
+                    default:
+                        // do nothing
                 }
             }
         }
@@ -400,8 +404,8 @@ public final class Score {
      * @param baseGames number of games which contributed to the base average
      * @return the average of the league
      */
-    public static short getAdjustedAverage(int leagueTotal, int leagueNumberOfGames, short baseAverage, int baseGames) {
-        int average = 0;
+    public static float getAdjustedAverage(int leagueTotal, int leagueNumberOfGames, short baseAverage, int baseGames) {
+        float average = 0;
 
         // If a base average was provided, it is multiplied by the base number of games so the average is calculated
         // accurately
@@ -418,14 +422,13 @@ public final class Score {
         if (leagueNumberOfGames > 0) {
             // Add the total of the game to the average and divide by the total number of games and base games
             average += leagueTotal;
-            average /= leagueNumberOfGames + baseGames;
+            average /= (float) (leagueNumberOfGames + baseGames);
         } else if (baseGames > 0) {
             // Otherwise, if a base average was provided, just divide by the number of base games
-            average /= baseGames;
+            average /= (float) baseGames;
         }
 
-        // The final value should always be between 0 and 450, so cast it into a short and return
-        return (short) average;
+        return average;
     }
 
     /**

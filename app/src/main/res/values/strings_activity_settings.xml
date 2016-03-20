@@ -35,6 +35,9 @@
 
     <!-- Stats Settings -->
     <string name="pref_header_stats">Statistics</string>
+    <string name="pref_average_as_decimal_title">Show average to 1 decimal?</string>
+    <string name="pref_average_as_decimal_summaryOn">Average will have up to 1 decimal</string>
+    <string name="pref_average_as_decimal_summaryOff">Average will be rounded</string>
     <string name="pref_include_events_title">Include events in stats?</string>
     <string name="pref_include_events_summaryOn">Events will be included</string>
     <string name="pref_include_events_summaryOff">Events will NOT be included</string>
@@ -71,6 +74,9 @@
     <string name="pref_enable_fab_title">Enable floating buttons</string>
     <string name="pref_enable_fab_summaryOn">Floating buttons are enabled</string>
     <string name="pref_enable_fab_summaryOff">Floating buttons are not visible</string>
+    <string name="pref_pins_behind_fabs_title">Show pins behind next/previous buttons</string>
+    <string name="pref_pins_behind_fabs_summaryOn">Pins will be behind floating buttons</string>
+    <string name="pref_pins_behind_fabs_summaryOff">Pins will be above floating buttons</string>
     <string name="pref_enable_strike_highlights_title">Highlight strikes/spares</string>
     <string name="pref_enable_strike_highlights_summaryOn">Mark highlights are enabled</string>
     <string name="pref_enable_strike_highlights_summaryOff">Mark highlights are disabled</string>

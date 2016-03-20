@@ -43,6 +43,8 @@ public final class Constants {
     public static final String KEY_ENABLE_FAB = "pref_enable_fab";
     /** Identifier for preference for if floating action button to do team scoring should be shown. */
     public static final String KEY_ENABLE_TEAM_FAB = "pref_enable_team_fab";
+    /** Identifier for preference if pins should be displayed behind or above floating action buttons. */
+    public static final String KEY_PINS_BEHIND_FABS = "pref_pins_behind_fabs";
     /** Identifier for preference for strikes and spares should be highlighted while editing a game. */
     public static final String KEY_ENABLE_STRIKE_HIGHLIGHTS = "pref_enable_strike_highlights";
     /** Identifier for preference for opening the app's Facebook page. */
@@ -53,6 +55,8 @@ public final class Constants {
     public static final String KEY_HIGHLIGHT_MATCH_RESULTS = "pref_highlight_match_results";
     /** Identifier for preference to display legal attribution from Open Source Software. */
     public static final String KEY_ATTRIBUTION = "pref_attribution";
+    /** Identifier for preference to show averages with up to 1 decimal place of accuracy. */
+    public static final String KEY_AVERAGE_AS_DECIMAL = "pref_average_as_decimal";
 
     // PREFERENCES
     /** Identifier for SharedPreferences of app. */
@@ -69,8 +73,6 @@ public final class Constants {
     public static final String PREF_FACEBOOK_PAGE_OPENED = "fb_page_opened";
     /** Identifier for if user has closed the facebook promotional content since opening the app. */
     public static final String PREF_FACEBOOK_CLOSED = "fb_closed";
-    /** Identifier for if user has been prompted to rate the application since opening it. */
-    public static final String PREF_RATE_ME_SHOWN = "rate_shown";
     /** Identifier for if user has been prompted to fix league/event names that may be been incorrectly set. */
     public static final String PREF_PROMPT_LEAGUE_EVENT_NAME_FIX = "le_name_fix";
     /** Identifier for if user has been informed on the instructions to creating a team. */
@@ -156,7 +158,7 @@ public final class Constants {
     /** The maximum number of bowlers that can be added to a single team. */
     public static final byte MAX_TEAM_MEMBERS = 8;
 
-    //SCORING VALUES
+    // SCORING VALUES
     /** Symbol representing a strike. */
     public static final String BALL_STRIKE = "X";
     /** Symbol representing a spare. */
@@ -180,7 +182,7 @@ public final class Constants {
     /** Array representing the state of all pins as being knocked down. */
     public static final boolean[] FRAME_PINS_DOWN = {true, true, true, true, true};
 
-    //BALL VALUES
+    // BALL VALUES
     /** Indicates a strike was thrown. */
     public static final byte BALL_VALUE_STRIKE = 0;
     /** Indicates a left was thrown. */
@@ -237,6 +239,8 @@ public final class Constants {
     public static final String FRAGMENT_STAT_GRAPH = "StatsGraphFragment";
     /** Tag to identify instance of MatchPlayFragment. */
     public static final String FRAGMENT_MATCH_PLAY = "MatchPlayFragment";
+    /** Tag to identify instance of TransferFragment. */
+    public static final String FRAGMENT_TRANSFER = "TransferFragment";
 
     /** Maximum score of a 5 pin game. */
     public static final int GAME_MAX_SCORE = 450;

@@ -7,9 +7,12 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+
+import java.text.DecimalFormat;
 
 /**
  * Created by Joseph Roque on 2015-07-24. Constants and methods for changes made to the UI.
@@ -30,6 +33,11 @@ public final class DisplayUtils {
     public static final int COLOR_BLACK = 0xff000000;
     /** Constant for white color. */
     public static final int COLOR_WHITE = 0xffffffff;
+
+    /** Used to format averages to display as an integer. */
+    private static final DecimalFormat AVERAGE_INTEGER_FORMAT = new DecimalFormat("0");
+    /** Used to format averages to display up to a single decimal place. */
+    private static final DecimalFormat AVERAGE_DECIMAL_FORMAT = new DecimalFormat("0.#");
 
     /**
      * Default private constructor.
@@ -90,7 +98,7 @@ public final class DisplayUtils {
      * @param drawableId id of drawable
      * @return drawable which represents {@code drawableId}
      */
-    @SuppressWarnings("deprecation")    //Uses newer APIs when available
+    @SuppressWarnings("deprecation") // Uses newer APIs when available
     public static Drawable getDrawable(Resources res, int drawableId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             return res.getDrawable(drawableId, null);
@@ -125,6 +133,21 @@ public final class DisplayUtils {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    /**
+     * Formats an average to either one or no decimal places.
+     *
+     * @param average value to format
+     * @param toDecimal {@code true} to format to one decimal place, {@code false} to format to none
+     * @return the formatted value as a {@code string}
+     */
+    public static String getFormattedAverage(float average, boolean toDecimal) {
+        Log.d(TAG, "Average: " + average);
+        if (toDecimal)
+            return AVERAGE_DECIMAL_FORMAT.format(average);
+        else
+            return AVERAGE_INTEGER_FORMAT.format(average);
     }
 
     /**

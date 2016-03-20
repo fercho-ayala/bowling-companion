@@ -3,6 +3,7 @@
     <!-- App & Fragment Titles -->
     <string name="app_name">Bowling Companion</string>
     <string name="title_fragment_team">Creating a Team</string>
+    <string name="title_fragment_transfer">Transfer Data</string>
     <string name="title_fragment_league_event">Leagues &amp; Events</string>
     <string name="title_fragment_series">Series</string>
     <string name="title_fragment_game">Game Details</string>
@@ -57,6 +58,7 @@
     <string name="action_combine_series">Combine series</string>
     <string name="action_duplicate_series">Duplicate series</string>
     <string name="action_cancel_team">Cancel team</string>
+    <string name="action_transfer">Transfer data</string>
 
     <!-- TextView text -->
     <string name="text_next_ball">Next Ball</string>
@@ -89,9 +91,47 @@
     <string name="text_oversize_team_title">Team too large!</string>
     <string name="text_identical_event_name_title">Event already exists!</string>
 
+    <!-- Transfer text -->
+    <string name="text_transfer_info">This tool allows you to transfer your bowling data to a new device. Your data will be uploaded to a remote server, from which you can later download it onto a new device. This data will be available for up to 1 hour for you to transfer to a new device.\n\nWhile this feature is introduced, a secondary backup of your statistics will be kept in case of data loss. Note, however, that this tool is NOT for backing up your data, but for transferring to a new device, and this backup may be discarded without notice.\n\nTo begin, either export and upload your data, or import and download it.</string>
+    <string name="text_transfer_export_info">Press \'Begin\' to upload your bowling data to the server. When the upload finishes, you\'ll receive a unique code that will allow you to download the data on a different device.</string>
+    <string name="text_transfer_import_info">Enter your unique code below and press \'Begin\' to download your bowling data. When the download has finished, you will be prompted to load the new data, which will permanently overwrite your data on this device.</string>
+    <string name="text_transfer_restore_delete_info">Below, you can either restore your data from the last backup, or delete your backup to ensure it won\'t take up any space.</string>
+    <string name="text_export">1. Export</string>
+    <string name="text_import">2. Import</string>
+    <string name="text_restore_delete">Restore/Delete</string>
+    <string name="text_begin">Begin</string>
+    <string name="text_progress">Progress</string>
+    <string name="text_contacting_server">Contacting Server</string>
+    <string name="text_uploading">Uploading</string>
+    <string name="text_downloading">Downloading</string>
+    <string name="text_processing">Processing</string>
+    <string name="text_cancelling">Cancelling</string>
+    <string name="text_transfer_cancelled">Transfer cancelled.</string>
+    <string name="text_transfer_unknown_error">An unknown error occurred.</string>
+    <string name="text_transfer_file_not_found">Your data could not be found.</string>
+    <string name="text_transfer_oom">Application ran out of memory while transferring data.</string>
+    <string name="text_transfer_try_again_later">A connection could not be establish, please try again later.</string>
+    <string name="text_transfer_unavailable">The server is unavailable, please try again in about an hour.</string>
+    <string name="text_transfer_upload_complete">Upload complete! Your code:\n%1$s</string>
+    <string name="text_transfer_exported_already">You\'ve already exported your data to the server. Your code was: %1$s</string>
+    <string name="text_transfer_invalid_key">Your key should be exactly %1$d characters long.</string>
+    <string name="text_transfer_no_internet">Could not connect to the Internet.</string>
+    <string name="text_overwrite_data_title">Overwrite data?</string>
+    <string name="text_overwrite_data_message">You have downloaded a set of bowler data from another device. You can overwrite your current data, confirm it\'s correct, then return to this screen to either delete the backup or reload your old data. Are you sure you want to continue?</string>
+    <string name="text_overwrite">Overwrite</string>
+    <string name="text_backup_failure">The app failed to back up the current data and the process has been cancelled. Your original data is intact.</string>
+    <string name="text_transfer_successful">The app\'s data has been successfully updated. Confirm it\'s validity before returning to this screen to delete the backup.</string>
+    <string name="text_transfer_overwrite_failed">The app has failed to overwrite the current data. If you find your data has been corrupted, you can restore a backup from the \'Restore/Delete\' option above.</string>
+    <string name="text_delete_backup_prompt">Are you sure you want to delete your backup data? Make sure you confirm it\'s been loaded correctly.</string>
+    <string name="text_restore_backup_prompt">Are you sure you want to restore your backup? You\'ll have to redownload any current data.</string>
+    <string name="text_restore">Restore</string>
+    <string name="text_restore_backup">Restore backup</string>
+    <string name="text_delete_backup">Delete backup</string>
+    <string name="text_transfer_nonexist">The requested database doesn\'t seem to exist. Are you sure the download was successful / it hasn\'t been deleted already?</string>
+
     <!-- Placeholder text -->
     <string name="text_click_to_delete">Click to delete %1$s</string>
-    <string name="text_average_placeholder">Avg: %1$d</string>
+    <string name="text_average_placeholder">Avg: %1$s</string>
     <string name="text_until_auto_advance_placeholder">%1$d seconds until auto advance</string>
     <string name="text_game_placeholder">Game %1$d</string>
     <string name="text_max_games_placeholder">The number of games must be between 1 and %1$d.</string>
