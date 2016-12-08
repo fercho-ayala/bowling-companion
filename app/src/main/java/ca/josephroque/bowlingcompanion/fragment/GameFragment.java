@@ -42,6 +42,7 @@ import ca.josephroque.bowlingcompanion.database.Contract.FrameEntry;
 import ca.josephroque.bowlingcompanion.database.Contract.GameEntry;
 import ca.josephroque.bowlingcompanion.database.DatabaseHelper;
 import ca.josephroque.bowlingcompanion.dialog.ManualScoreDialog;
+import ca.josephroque.bowlingcompanion.dialog.ScoreInputDialog;
 import ca.josephroque.bowlingcompanion.utilities.DisplayUtils;
 import ca.josephroque.bowlingcompanion.utilities.NavigationUtils;
 import ca.josephroque.bowlingcompanion.utilities.Score;
@@ -57,8 +58,7 @@ import ca.josephroque.bowlingcompanion.view.PinLayout;
 @SuppressWarnings({"Convert2Lambda", "CheckStyle"})
 public class GameFragment
         extends Fragment
-        implements Theme.ChangeableTheme,
-        ManualScoreDialog.ManualScoreDialogListener {
+        implements Theme.ChangeableTheme {
 
     /** Identifies output from this class in Logcat. */
     @SuppressWarnings("unused")
@@ -722,38 +722,6 @@ public class GameFragment
         }
     }
 
-    @Override
-    public void onSetScore(short scoreToSet) {
-        if (scoreToSet < 0 || scoreToSet > Constants.GAME_MAX_SCORE) {
-            // If an invalid score is given, user is informed and method exists
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Invalid score!")
-                    .setMessage(R.string.dialog_bad_score)
-                    .setPositiveButton(R.string.dialog_okay, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .create()
-                    .show();
-            return;
-        }
-
-        // Clears state of game and sets the manual score of the game
-        resetGame();
-        setGameLocked(true);
-        mManualScoreSet[mCurrentGame] = true;
-        mGameScores[mCurrentGame] = scoreToSet;
-        mGameScoresMinusFouls[mCurrentGame] = scoreToSet;
-        clearAllText(false);
-        getActivity().supportInvalidateOptionsMenu();
-        if (mGameCallback != null)
-            mGameCallback.updateGameScore((byte) (mCurrentGame + 1),
-                    mGameScoresMinusFouls[mCurrentGame]);
-        saveGame(true);
-    }
-
     /**
      * Creates instances of OnClickListener to listen to events created by views in this activity.
      *
@@ -1008,6 +976,40 @@ public class GameFragment
      * Prompts user to reset the current game and set a manual score
      */
     private void showManualScoreDialog() {
+        final ScoreInputDialog.ScoreInputDialogListener listener = new ScoreInputDialog.ScoreInputDialogListener() {
+            @Override
+            public void onSetScore(short scoreToSet) {
+                if (scoreToSet < 0 || scoreToSet > Constants.GAME_MAX_SCORE) {
+                    // If an invalid score is given, user is informed and method exists
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Invalid score!")
+                            .setMessage(R.string.dialog_bad_score)
+                            .setPositiveButton(R.string.dialog_okay, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .create()
+                            .show();
+                    return;
+                }
+
+                // Clears state of game and sets the manual score of the game
+                resetGame();
+                setGameLocked(true);
+                mManualScoreSet[mCurrentGame] = true;
+                mGameScores[mCurrentGame] = scoreToSet;
+                mGameScoresMinusFouls[mCurrentGame] = scoreToSet;
+                clearAllText(false);
+                getActivity().supportInvalidateOptionsMenu();
+                if (mGameCallback != null)
+                    mGameCallback.updateGameScore((byte) (mCurrentGame + 1),
+                            mGameScoresMinusFouls[mCurrentGame]);
+                saveGame(true);
+            }
+        };
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Set manual score?")
                 .setMessage(R.string.dialog_set_score)
@@ -1015,8 +1017,7 @@ public class GameFragment
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        DialogFragment dialogFragment =
-                                ManualScoreDialog.newInstance(GameFragment.this);
+                        DialogFragment dialogFragment = ScoreInputDialog.newInstance(listener);
                         dialogFragment.show(getFragmentManager(), "ManualScoreDialog");
                     }
                 })

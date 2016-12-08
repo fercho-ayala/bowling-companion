@@ -15,11 +15,11 @@ import android.widget.EditText;
 import ca.josephroque.bowlingcompanion.R;
 
 /**
- * Created by Joseph Roque on 15-03-19. Provides a dialog and a callback interface {@link
- * ManualScoreDialog.ManualScoreDialogListener} for the user to enter a score for a game manually. The purpose is to
- * allow them to include a game in their statistics, without requiring that they insert every game frame-by-frame.
+ * Created by Joseph Roque on 15-03-19.
+ *
+ * Provides a dialog and a callback interface for the user to enter a score.
  */
-public class ManualScoreDialog
+public class ScoreInputDialog
         extends DialogFragment {
 
     /** Identifies output from this class in Logcat. */
@@ -30,7 +30,7 @@ public class ManualScoreDialog
     private static final byte MAX_SCORE_LENGTH = 3;
 
     /** Instance of callback listener. */
-    private ManualScoreDialogListener mDialogListener;
+    private ScoreInputDialogListener mDialogListener;
 
     @NonNull
     @Override
@@ -39,7 +39,7 @@ public class ManualScoreDialog
         final View dialogView = View.inflate(getContext(), R.layout.dialog_set_score, null);
 
         final EditText editTextScore = (EditText) dialogView.findViewById(R.id.et_score);
-        editTextScore.setHint("Score (max 450)");
+        editTextScore.setHint(R.string.text_score_450);
         editTextScore.setFilters(new InputFilter[]{new InputFilter.LengthFilter(MAX_SCORE_LENGTH)});
 
         if (savedInstanceState != null)
@@ -80,17 +80,16 @@ public class ManualScoreDialog
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putCharSequence("GameScore",
-                ((EditText) getDialog().findViewById(R.id.et_score)).getText());
+        outState.putCharSequence("GameScore", ((EditText) getDialog().findViewById(R.id.et_score)).getText());
     }
 
     /**
      * Callback interface which executes methods in activity upon user interaction.
      */
-    public interface ManualScoreDialogListener {
+    public interface ScoreInputDialogListener {
 
         /**
-         * Invoked when user opts to submit a manual score.
+         * Invoked when user finishes inputting a score.
          *
          * @param gameScore score input from user
          */
@@ -98,13 +97,13 @@ public class ManualScoreDialog
     }
 
     /**
-     * Creates a new instance of ManualScoreDialog, sets listener member variable and returns the new instance.
+     * Creates a new instance of ScoreInputDialog, sets listener member variable and returns the new instance.
      *
      * @param listener instance of callback interface
-     * @return new instance of ManualScoreDialog
+     * @return new instance of ScoreInputDialog
      */
-    public static ManualScoreDialog newInstance(ManualScoreDialogListener listener) {
-        ManualScoreDialog dialogFragment = new ManualScoreDialog();
+    public static ScoreInputDialog newInstance(ScoreInputDialogListener listener) {
+        ScoreInputDialog dialogFragment = new ScoreInputDialog();
         dialogFragment.mDialogListener = listener;
         return dialogFragment;
     }
